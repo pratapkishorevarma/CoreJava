@@ -10,7 +10,7 @@ public class ValidateXMLTest {
 
 	@Test
 	public void testXML() {
-		assertTrue(ValidateXML.isXMLValid(new File("resources/com/prv/xml/SampleSchema.xsd"), new File("resources/com/prv/xml/Sample.xml")));
+		assertTrue(ValidateXML.isXMLValid(new File("src/main/resources/com/prv/xml/SampleSchema.xsd"), new File("src/main/resources/com/prv/xml/Sample.xml")));
 	}
 
 }
