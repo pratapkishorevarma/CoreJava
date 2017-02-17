@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:Customers xmlns:p="http://prv/SampleSchema" xmlns:cmn="http://prv/CommonTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://prv/SampleSchema SampleSchema.xsd ">
+  <p:Customer ID="1234">
+    <p:Name>abc</p:Name>
+    <p:Dob>2001-01-02</p:Dob>
+    <p:Address>
+       <cmn:line1>street1</cmn:line1>
+       <cmn:line2>city1</cmn:line2>
+    </p:Address>
+    <p:Phone>9999999999</p:Phone>
+    <p:ClothSize>10</p:ClothSize>
+  </p:Customer>
+  <p:Customer ID="5678">
+    <p:Name>cda</p:Name>
+    <p:Dob>2001-01-02</p:Dob>
+    <p:Address>
+       <cmn:line1>street2</cmn:line1>
+       <cmn:line2>city2</cmn:line2>
+    </p:Address>
+    <p:Phone>7777777777</p:Phone>
+    <p:ClothSize>small</p:ClothSize>
+  </p:Customer>
+</p:Customers>

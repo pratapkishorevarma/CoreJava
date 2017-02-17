@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://prv/CommonTypes" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://prv/CommonTypes">
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="line1" type="xs:string"></xs:element>
+			<xs:element name="line2" type="xs:string" minOccurs="0"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+    
+    <xs:complexType name="IndiaAddressType">
+    	<xs:complexContent>
+    		<xs:extension base="AddressType">
+    			<xs:sequence>
+    				<xs:element name="State" type="StateType" default="AndhraPradesh"></xs:element>
+    				<xs:element name="Country" type="xs:string" fixed="India"></xs:element>
+    			</xs:sequence>
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="StateType">
+    	<xs:restriction base="xs:string">
+    		<xs:enumeration value="AndhraPradesh"></xs:enumeration>
+    		<xs:enumeration value="Telangana"></xs:enumeration>
+    		<xs:enumeration value="Karnataka"></xs:enumeration>
+    	</xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="InternalAddressType">
+    	<xs:complexContent>
+            <xs:restriction base="AddressType">
+            	<xs:sequence>
+    				<xs:element name="line1" type="xs:string"></xs:element>
+    			</xs:sequence>
+            </xs:restriction>
+    	</xs:complexContent>
+    </xs:complexType>
+    <!-- But if an element specifies its of type "AddressType", then any of the 4 types can appear in the XML document (IndiaAddressType, InternalAddressType or AddressType).
+    In the XML document use the xsi:type attribute.  -->
+	<xs:simpleType name="SizeByNumberType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:maxInclusive value="21" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SizeByStringNameType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="small" />
+			<xs:enumeration value="medium" />
+			<xs:enumeration value="large" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="USClothingSizeType">
+		<xs:union memberTypes="SizeByNumberType SizeByStringNameType" />
+		<!-- type can take any of the values the two types can take -->
+	</xs:simpleType>
+
+	<xs:simpleType name="SizesinStockType">
+		<xs:list itemType="SizeByNumberType" />
+		<!-- valid values "5 9 12". can give more than one value as list -->
+	</xs:simpleType>
+</xs:schema>

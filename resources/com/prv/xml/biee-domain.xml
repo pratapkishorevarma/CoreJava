@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><BIDomain xmlns="http://www.oracle.com/biee/bi-domain">
+    <DomainOptions centralConfigurationEnabled="true" hardwareAcceleration="false" processProvisioningEnabled="true" saveDatedBackupConfigFiles="false" securityMode="SINGLE_TENANT"/>
+    <VersionInfo dataVersion="3" domainVersion="20" sslVersion="0"/>
+    <OracleInstance host="slc03vmz.us.oracle.com" id="BIInstance" instanceHome="/scratch/aime/work/APPTOP/instance/BIInstance" opmnLocalPort="10203" opmnRemotePort="10204">
+        <BIInstanceDeployment biInstanceName="coreapplication" listenAddress="*" numBiServers="1" numClusterControllers="1" numEssbaseAgents="1" numJavaHosts="1" numPresentationServers="1" numSchedulers="1" portRangeEnd="10215" portRangeStart="10206">
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="OracleBIServerComponent" id="coreapplication_obis1" monitorPort="10207" port="10206"/>
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="OracleBIClusterControllerComponent" id="coreapplication_obiccs1" monitorPort="10213" port="10212"/>
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="OracleBIJavaHostComponent" id="coreapplication_obijh1" port="10214"/>
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="OracleBIPresentationServicesComponent" id="coreapplication_obips1" port="10208"/>
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="OracleBISchedulerComponent" id="coreapplication_obisch1" monitorPort="10210" port="10209" scriptRPCPort="10211"/>
+            <BIComponent clusterStyle="SELF_MANAGED" componentType="Essbase" id="essbaseserver1" port="10215"/>
+        </BIInstanceDeployment>
+    </OracleInstance>
+    <BIInstance name="coreapplication">
+        <AvailabilityOptions masterBIServerComponentId="coreapplication_obis1" masterBIServerOracleInstanceId="BIInstance" primaryClusterControllerComponentId="coreapplication_obiccs1" primaryClusterControllerOracleInstanceId="BIInstance" primaryEssbaseComponentId="essbaseserver1" primaryEssbaseOracleInstanceId="BIInstance" primarySchedulerComponentId="coreapplication_obisch1" primarySchedulerOracleInstanceId="BIInstance"/>
+        <ClusterControllerOptions>
+            <LogOptions level="default"/>
+        </ClusterControllerOptions>
+        <DefaultLogOptions level="info" maxDaysAge="10" maxFileSizeKB="10240"/>
+        <EmailOptions certDepth="9" certDirectory="" certDirectoryNotFile="true" certFile="" cipherList="" emailAddressOfSender="defaultuser@defaultmailserver.com" fromDisplayName="Oracle Business Intelligence" maxRecipients="0" port="25" retryCount="1" smtpServerName="localhost" useBCC="true" useSSL="false" useStartTLS="false"/>
+        <EssbaseOptions clusterStyleUpgraded="true" enabled="true" sharedFolderPath="pratap" simplifiedScaleout="true">
+            <Cluster clusterName="Essbase_FA_Cluster" nameVerificationRequired="false"/>
+        </EssbaseOptions>
+        <JavaHostOptions>
+            <LogOptions level="default"/>
+        </JavaHostOptions>
+        <MarketingOptions url="http://slc03vmz.us.oracle.com:7012/_dav/cs/idcplg"/>
+        <PerformanceOptions bIServerCacheEnabled="true" disallowOnlineRPDUpdates="false" globalCacheStoragePath="/scratch/aime/work/APPTOP/instance/BIShared/OracleBIServerComponent/coreapplication_obis1/cache" globalCacheStorageSize="500" globalCacheStorageUnits="MB" maxCacheEntries="1000" maxIndividualCacheEntrySizeMegaBytes="20" maxNumRowsInTableView="75000" maxNumRowsPerEmailPage="25000" maxNumRowsToExcel="25000" userSessionExpiryMinutes="210"/>
+        <PresentationOptions allowDashboardSectionsCollapsible="true" pivotTablesAutoPreview="true" showPageTabsByDefault="false" showSectionHeadingByDefault="false">
+            <LogOptions level="default"/>
+            <BIComposer enabled="true"/>
+        </PresentationOptions>
+        <PresentationServerOptions syncLogonTimeoutSecs="60" webCatalogLocation="/scratch/aime/work/APPTOP/instance/BIShared/OracleBIPresentationServicesComponent/coreapplication_obips1/catalog/OracleBIApps"/>
+        <SchedulerOptions callInterface="12" dataSource="(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=slc03vna.us.oracle.com)(PORT=1025)))(CONNECT_DATA=(SERVICE_NAME=DB1025)))" database="57">
+            <LogOptions level="default"/>
+        </SchedulerOptions>
+        <SecurityOptions sslEnabled="false" sslManualConfig="false" ssoEnabled="true" ssoProvider="OracleSSOPLUS" ssoProviderLogoffURL="/oamsso/logout.html?end_url=/analytics" ssoProviderLogonURL="t3://slc03vmz.us.oracle.com:10201">
+            <FusionMiddleware>
+                <JaznPolicyStripeName>obi</JaznPolicyStripeName>
+                <ValidateUserGUIDs>true</ValidateUserGUIDs>
+                <CustomGUIDFormat/>
+            </FusionMiddleware>
+            <SecurityService>
+                <EndpointURI>bisecurity/service</EndpointURI>
+            </SecurityService>
+        </SecurityOptions>
+        <ServerOptions repositoryDataSourceName="Star" repositoryName="OracleBIApps_BI0002" repositorySharedLocation="/scratch/aime/work/APPTOP/instance/BIShared/OracleBIServerComponent/coreapplication_obis1/repository">
+            <LogOptions level="default"/>
+            <RPDUploadOptions repositorySource="upload" repositoryToBePushed="true"/>
+            <UserLogOptions maxDaysAge="10" maxFileSizeKB="100000"/>
+            <UsageTrackingOptions centrallyManaged="true" connectionPool="&quot;&lt;Database&gt;&quot;.&quot;&lt;Connection Pool&gt;&quot;" directInsert="true" enabled="false" physicalTableName="&quot;&lt;Database&gt;&quot;.&quot;&lt;Catalog&gt;&quot;.&quot;&lt;Schema&gt;&quot;.&quot;&lt;Table&gt;&quot;" summaryAdvisorTableName="&quot;&lt;Database&gt;&quot;.&quot;&lt;Catalog&gt;&quot;.&quot;&lt;Schema&gt;&quot;.&quot;&lt;Table&gt;&quot;" summaryStatisticsLogging="NO"/>
+        </ServerOptions>
+        <ServiceInstancesOptions>
+            <ServiceInstances sharedPath=""/>
+        </ServiceInstancesOptions>
+        <DeploymentProfileOptions mode=""/>
+    </BIInstance>
+</BIDomain>

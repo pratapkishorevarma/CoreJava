@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xmlpConfig xmlns="http://xmlns.oracle.com/oxp/xmlp">
+   <property name="SAW_SERVER" value="fa-internal.us.oracle.com"/>
+   <property name="SAW_SESSION_TIMEOUT" value="90"/>
+   <property name="DEBUG_LEVEL" value="exception"/>
+   <property name="SAW_PORT" value="10217"/>
+   <property name="SAW_JBIPS_PORT" value="9710"/>
+   <property name="SAW_PASSWORD" value=""/>
+   <property name="SAW_PROTOCOL" value="http"/>
+   <property name="SAW_VERSION" value="v6"/>
+   <property name="SAW_USERNAME" value=""/>
+   <property name="SAW_URL_SUFFIX" value="analytics-ws/saw.dll"/> 
+   <property name="ENDECA_URL_SUFFIX" value="ws"/> 
+   <property name="ENDECA_PORT" value="9704"/>
+   <property name="MONITORING_ENABLED" value="false"/>
+   <property name="MONITORING_DEFAULT_HISTORY_SIZE" value="30"/>
+   <property name="AUDIT_ENABLED" value="false"/>
+   <property name="JSESSION_RESET_DISABLED" value="true"/>
+   
+   <property name="APPSTORE_PATH" value="/App Store"/>
+<property name="SSO_TYPE" value="OAM"/>
+<property name="SSO_KEY_USERNAME_TYPE" value="Header"/>
+<property name="SSO_KEY_LOCALE_TYPE" value="Parameter"/>
+<property name="SSO_KEY_USERNAME" value="OAM_REMOTE_USER"/>
+<property name="SSO_KEY_LOCALE" value="LOCALE_LANGUAGE"/>
+<property name="SINGLE_SIGN_OFF_URL" value="/oamsso/logout.html?end_url=/analytics"/>
+<property name="SECURITY_MODEL" value="FUSION"/>
+<property name="DATAMODEL_SCALABLE_MODE" value="on"/>
+   <property name="SQL_QUERY_TIMEOUT" value="600"/>
+   <property name="DB_FETCH_SIZE_AUTO" value="true"/>
+<property name="ONLINE_REPORT_MAX_DATA_SIZE" value="314572800"/>
+   <property name="ONLINE_REPORT_FREE_MEMORY_THRESHOLD" value="524288000"/>
+   <property name="XML_DATA_SIZE_LIMIT" value="524288000"/>
+   <property name="MEMORY_GOVERNOR_MODE" value="production"/>
+   <property name="ONLINE_REPORT_MAX_DATA_SIZE_UNDER_FREE_MEMORY_THRESHOLD" value="52428800"/>
+<property name="CLOUD_ENABLED" value="false"/>
+</xmlpConfig>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://prv/SampleSchema"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://prv/SampleSchema" xmlns:cmn="http://prv/CommonTypes">
+	<xs:import schemaLocation="CommonTypes.xsd"
+		namespace="http://prv/CommonTypes"></xs:import>
+
+	<!-- If it is important that existing products should be able to read newer 
+		versions of a given document, then consider adding any and anyAttribute entries 
+		to the end of your definitions. -->
+
+
+	<xs:simpleType name="NameType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"></xs:minLength>
+			<xs:maxLength value="50"></xs:maxLength>
+			<xs:pattern value="[a-z]*[A-Z]*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="Supplier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="SupplierDataGroup"></xs:group>
+				<xs:element name="IndiaAddress" type="cmn:IndiaAddressType">
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="DobPropertiesGroup"></xs:attributeGroup>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Message">
+		<xs:complexType>
+			<xs:all>
+			<!-- The {max occurs} of an element in an 'all' model group must be 0 or 1 -->
+				<xs:element name="DateSent" type="xs:date" />
+				<xs:element name="Sender" type="xs:string" />
+				<xs:element name="Content">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any />
+							<!-- The <xs:any> construct allows us specify that our XML document 
+								can contain elements that are not defined in this schema -->
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Sender">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:anyAttribute />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- groups cannot be extended or restricted like complex and simple types -->
+	<xs:group name="SupplierDataGroup">
+		<xs:sequence>
+			<xs:element name="Forename" type="xs:string" />
+			<xs:element name="Surname" type="xs:string" />
+			<xs:element name="Dob" type="xs:date" />
+		</xs:sequence>
+	</xs:group>
+	<xs:attributeGroup name="DobPropertiesGroup">
+		<xs:attribute name="Day" type="xs:string" />
+		<xs:attribute name="Month" type="xs:string" />
+		<xs:attribute name="Year" type="xs:integer" />
+	</xs:attributeGroup>
+
+    <xs:element name="Customers" type="CustomerType"></xs:element>
+
+    <xs:complexType name="CustomerType">
+	<xs:sequence>
+		<xs:element name="Customer" maxOccurs="unbounded">
+			<xs:complexType mixed="false">
+				<!-- mixed=true means the data and elements can be mixed. not recommended 
+					to use this as its difficult to process -->
+				<xs:sequence>
+					<!-- other compositors are choice and all. choice means any one element, 
+						all means any order -->
+					<xs:element name="Name" type="NameType"></xs:element>
+					<xs:element name="Dob" type="xs:date"></xs:element>
+					<xs:element name="Address" type="cmn:AddressType"
+						minOccurs="1" maxOccurs="1">
+					</xs:element>
+					<!-- default values are 1,1 maxOccurs="unbounded" means any number -->
+					<xs:element name="Phone">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+								<xs:minInclusive value="7000000000"></xs:minInclusive>
+								<xs:maxInclusive value="9999999999"></xs:maxInclusive>
+								<xs:totalDigits value="10"></xs:totalDigits>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ClothSize" type="cmn:USClothingSizeType"></xs:element>
+				</xs:sequence>
+				<xs:attribute name="ID" type="xs:string" use="required">
+				</xs:attribute>
+				<!-- attribute to be used for representing metadata -->
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
+</xs:complexType>
+</xs:schema>
